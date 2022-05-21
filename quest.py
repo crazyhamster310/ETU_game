@@ -47,11 +47,11 @@ async def story(message: types.Message):
 async def answer_chosen(message: types.Message, state: FSMContext):
     global answers, id_quest
     text = ""
-    if isinstance(message.content_type, types.ContentType.VOICE):
+    if message.content_type == types.ContentType.VOICE:
         voice = await message.voice.get_file()
         path = f"./voices/{message.chat.full_name}"
         text = await voice_handler(voice, path)
-    elif isinstance(message.content_type, types.ContentType.TEXT):
+    elif message.content_type == types.ContentType.TEXT:
         text = message.text
     if text not in answers:
         await message.answer("Некорректный ответ. Повторите попытку")
