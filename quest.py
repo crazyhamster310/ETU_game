@@ -60,7 +60,7 @@ async def answer_chosen(message: types.Message, state: FSMContext):
     user_data = await state.get_data()
     await message.answer("Ответ принят", reply_markup=types.ReplyKeyboardRemove())
     await state.finish()
-    if isinstance(message.content_type, types.ContentType.VOICE):
+    if message.content_type == types.ContentType.VOICE:
         cur.execute(f"insert into user_story (ID_quest,ID_user,action_num,audio_name) values ({id_quest}, {message.chat.id}, {int(user_data['chosen_answer'])}, \'{path + '/' + voice.file_id + '.ogg'}\')")
     else:
         cur.execute(f"insert into user_story (ID_quest,ID_user,action_num) values ({id_quest}, {message.chat.id}, {int(user_data['chosen_answer'])})")
