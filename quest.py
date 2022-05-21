@@ -26,13 +26,13 @@ async def story(message: types.Message):
     await message.answer_voice(voice)
     voice.close()
     await message.answer("1." + text_story[2])
-    if not text_story[4]:
+    if text_story[4]:
         answers.append("2")
         voice = open(audio_story[4], "rb")
         await message.answer_voice(voice)
         await message.answer("2." + text_story[4])
         voice.close()
-    if not text_story[6]:
+    if text_story[6]:
         answers.append("3")
         voice = open(audio_story[5], "rb")
         await message.answer_voice(voice)
