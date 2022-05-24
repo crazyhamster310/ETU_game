@@ -30,6 +30,6 @@ async def voice_handler(voice: types.File, path: str):
     await handle_file(voice, f"{voice.file_id}.ogg", path)
     file_name_full = f"{path}/{voice.file_id}.ogg"
     file_name_converted = f"{path}/{voice.file_id}.wav"
-    subprocess.run(['C:/FFmpeg/bin/ffmpeg.exe', '-i', file_name_full, file_name_converted])
+    subprocess.run(['./FFmpeg/bin/ffmpeg.exe', '-i', file_name_full, file_name_converted])
     text = await recognise(file_name_converted)
     return text
